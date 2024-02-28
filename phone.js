@@ -1,7 +1,15 @@
 const loadPhone = async(brand, isShowAll) =>{
     const response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${brand}`)
-    const data= await response.json()
-    showPhone(data.data, isShowAll);
+    const data= await response.json();
+    // console.log(typeof data.status);
+    if(!data.status){
+        noData();
+    }
+    else{
+        showPhone(data.data, isShowAll);
+    }
+    // showPhone(data.data, isShowAll);
+    
 }
 function searchClicked(isShowAll){
     showLoadingEffect();
@@ -11,9 +19,30 @@ function searchClicked(isShowAll){
 
 }
 
+function noData(){
+    hideLoadingEffect();
+    const phoneContainer= document.getElementById('phoneContainer');
+    phoneContainer.textContent='';
+    const messageContainer= document.getElementById('messageContainer');
+    messageContainer.textContent='';
+    const btn= document.getElementById('showMoreBtn');
+    if(!btn.classList.contains('hidden')){
+        btn.classList.add('hidden')
+    }
+    const message= document.createElement('div');
+    message.innerHTML= `
+    <div class="flex justify-center">
+        <h1 class="text-red-700 border-2 border-red-700 p-4 text-4xl font-bold m-8 text-center">You can only find <br> Samsung / iphone / Oppo <br> related models </h1>
+    </div>
+    `;
+    messageContainer.appendChild(message);
+}
+
 function showPhone(phones, isShowAll){
     const phoneContainer= document.getElementById('phoneContainer');
     phoneContainer.textContent='';
+    const messageContainer= document.getElementById('messageContainer');
+    messageContainer.textContent='';
     if(!isShowAll){
         if(phones.length>12){
             phones= phones.slice(0,12);
