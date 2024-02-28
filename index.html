@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Daisy+Tailwind -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="max-w-7xl mx-auto">
+    <h2 class="text-3xl text-center mt-3"><b>Welcome to PhoneArena</b></h2>
+    <section class="flex flex-col md:flex-row justify-center mt-8 gap-2">
+        <div>
+            <input
+            id="inpText"
+            type="text"
+            placeholder="Brand Name"
+            class="input input-bordered w-96 max-w-xl"
+            />
+        </div>
+        <div class="flex justify-center mt-5 md:mt-0">
+            <button onclick="searchClicked(false)" class="btn btn-primary text-white">Search</button>
+        </div>
+    </section>
+    <section>
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="phoneInfo">
+
+            </div>
+          <!-- <h3 class="font-bold text-lg">Hello!</h3>
+          <p class="py-4">Press ESC key or click the button below to close</p> -->
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn bg-red-600 text-white">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+      <div id="loading" class="flex justify-center my-40 hidden">
+        <div class="flex gap-2">
+          <span class="loading loading-bars loading-lg"></span>
+          <span class="loading loading-bars loading-lg"></span>
+          <span class="loading loading-bars loading-lg"></span>
+        </div>
+      </div>
+      <div id="phoneContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-6"></div>
+
+    </section>
+    <div class="flex justify-center">
+        <button
+          onclick="showMoreClicked()"
+          id="showMoreBtn"
+          class="btn btn-primary text-white hidden my-8"
+        >
+          Show More
+        </button>
+      </div>
+    <script src="phone.js"></script>
+  </body>
+</html>
